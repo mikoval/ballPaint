@@ -47,9 +47,6 @@ var loader = new THREE.TextureLoader();
     redTextureColor, redTextureNormal, redTextureSpecular, redTextureDisplacement, 
     blueTextureColor, blueTextureNormal, blueTextureSpecular, blueTextureDisplacement;
 
-loader.load('tmp.png', function ( texture){
-      tmp = texture;
-  })
 
   loader.load('marble/marble_color.jpg', function ( texture){
       playerTextureColor = texture;
@@ -106,7 +103,7 @@ function load(res, size){
   if(!greenTextureColor || !greenTextureNormal  || !greenTextureSpecular  || !greenTextureDisplacement 
     ||!redTextureColor  || !redTextureNormal  || !redTextureSpecular  || !redTextureDisplacement 
     ||!blueTextureColor  || !blueTextureNormal  || !blueTextureSpecular  || !blueTextureDisplacement ){
-    setTimeout(function(){ load()}, 100);
+    setTimeout(function(){ load()}, 300);
    
   }
   else{
