@@ -103,7 +103,7 @@ function load(res, size){
   if(!greenTextureColor || !greenTextureNormal  || !greenTextureSpecular  || !greenTextureDisplacement 
     ||!redTextureColor  || !redTextureNormal  || !redTextureSpecular  || !redTextureDisplacement 
     ||!blueTextureColor  || !blueTextureNormal  || !blueTextureSpecular  || !blueTextureDisplacement ){
-    setTimeout(function(){ load()}, 300);
+    setTimeout(function(){ load(res, size)}, 300);
    
   }
   else{
@@ -112,7 +112,9 @@ function load(res, size){
   }
 
 }
-
+callLoad(res, size){
+  setTimeout(function(){ load(res, size)}, 300);
+}
 var game;
   
 
