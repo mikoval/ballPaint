@@ -112,7 +112,7 @@ function load(res, size){
   }
 
 }
-callLoad(res, size){
+function callLoad(res, size){
   setTimeout(function(){ load(res, size)}, 300);
 }
 var game;
