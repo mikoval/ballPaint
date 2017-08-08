@@ -45,8 +45,8 @@ function Ball(x, z, color){
 		this.time = Date.now();
 		this.velocity.y -= 0.3;
 		this.velocity.multiplyScalar(0.99)
-		if(this.velocity.length() >15.0)
-			this.velocity.normalize().multiplyScalar(15.0);
+		if(this.velocity.length() >16.0)
+			this.velocity.normalize().multiplyScalar(16.0);
 
 		this.position = this.position.add(this.velocity.clone().multiplyScalar(0.1));
 		this.changed = true;

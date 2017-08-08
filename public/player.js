@@ -3,7 +3,7 @@ function Player(z, color){
 	this.position = new THREE.Vector3(0, 1, 5);
 	this.velocity = new THREE.Vector3(0, 0, 0);
 	this.rotation = 0;
-	this.speed = .2;
+	this.speed = .4;
 	this.changed = true;
 	this.orientation =  new THREE.Quaternion();
 	this.pathColor = 1;
@@ -34,7 +34,7 @@ function Player(z, color){
 		}
 		this.inputs(dt);
 		this.velocity.y -= 0.3;
-		this.velocity.multiplyScalar(0.97)
+		this.velocity.multiplyScalar(0.95)
 		if(this.velocity.length() >8.0)
 			this.velocity.normalize().multiplyScalar(8.0);
 

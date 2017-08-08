@@ -68,32 +68,35 @@ function Game(scene, camera, res, pathsize){
 			if(obj.position.distanceTo(obj2.position) < obj.radius + obj2.radius){
 					var p1 = obj.position.clone();
 					var p2 = obj2.position.clone();
-					var n = p2.sub(p1).normalize();
+					var n = p1.clone().sub(p2.clone()).normalize();
 					var v1 = obj.velocity.clone();
 					var v2 = obj2.velocity.clone();
 					
-					var v3 = obj.position.clone();
-					var v4 = obj2.position.clone();
-					var p3 = obj.velocity.clone();
-					var p4 = obj2.velocity.clone(); 
+					var v3 = obj.velocity.clone();
+					var v4 = obj2.velocity.clone();
+					var p3 = obj.position.clone();
+					var p4 = obj2.position.clone(); 
 					
 					var v =  v4.sub(v3);
 					var d = p4.sub(p3);
 			
-					if(v.dot(d) >0)
+					if(v.dot(d) >=0)
 						continue;
-				
-
 					
-				
+					
+
 					var a1 = v1.dot(n);
 					var a2 = v2.dot(n);
-					var m1 =1;
+					var m1 = 1
 					var m2 = 1
-					var vel1 = v1.sub( n.multiplyScalar((a1- a2) *( 2 * m1 * m2) /(m1 + m2)* m2))
-					var vel2 = v2.add( n.multiplyScalar((a1- a2) * (2 * m1 * m2) /(m1 + m2)* m1))
+					var  optimizedP = (2.0 * (a1 - a2)) / (m1 + m2);
+					
+					var vel1 = v1.sub( n.clone().multiplyScalar(optimizedP * m2))
+					var vel2 = v2.add( n.clone().multiplyScalar( optimizedP * Math.abs(optimizedP)  * m1))
+					
 					obj.velocity = vel1;
 					obj2.velocity = vel2;
+					
 
 			}
 		}
@@ -106,14 +109,14 @@ function Game(scene, camera, res, pathsize){
 				if(obj.position.distanceTo(obj2.position) < obj.radius + obj2.radius){
 					var p1 = obj.position.clone();
 					var p2 = obj2.position.clone();
-					var n = p2.sub(p1).normalize();
+					var n = p1.clone().sub(p2.clone()).normalize();
 					var v1 = obj.velocity.clone();
 					var v2 = obj2.velocity.clone();
 
-					var v3 = obj.position.clone();
-					var v4 = obj2.position.clone();
-					var p3 = obj.velocity.clone();
-					var p4 = obj2.velocity.clone(); 
+					var v3 = obj.velocity.clone();
+					var v4 = obj2.velocity.clone();
+					var p3 = obj.position.clone();
+					var p4 = obj2.position.clone(); 
 					
 					var v =  v4.sub(v3);
 					var d = p4.sub(p3);
@@ -127,10 +130,15 @@ function Game(scene, camera, res, pathsize){
 					var a2 = v2.dot(n);
 					var m1 = 1
 					var m2 = 1
-					var vel1 = v1.sub( n.multiplyScalar((a1- a2) * 2 * m1 * m2 /(m1 + m2)* m2))
-					var vel2 = v2.add( n.multiplyScalar((a1- a2) * 2 * m1 * m2 /(m1 + m2)* m1))
+					var  optimizedP = (2.0 * (a1 - a2)) / (m1 + m2);
+					
+					var vel1 = v1.sub( n.clone().multiplyScalar(optimizedP * m2))
+					var vel2 = v2.add( n.clone().multiplyScalar(optimizedP * m1))
+					
 					obj.velocity = vel1;
 					obj2.velocity = vel2;
+					
+
 				}
 			}
 		}
