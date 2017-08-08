@@ -211,21 +211,21 @@ $(document).keyup(function(e) {
     }
 });
 function motion(event){
-	alert(event.alpha);
+	alert(event.beta);
 
-  	if(event.alpha > 190){
+  	if(event.beta > 240){
   		input.up = true;
   		input.back = false;
   	}
-  	 if(event.alpha < 170){
+  	 if(event.beta < 170){
   		input.up = false
   		input.back = true;
   	}
-  	if(event.beta > 10){
+  	if(event.gamma > 10){
   		input.left = true;
   		input.right = false;
   	}
-  	 if(event.beta < -10){
+  	 if(event.gamma < -10){
   		input.left = false
   		input.right = true;
   	}
