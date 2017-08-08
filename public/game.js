@@ -211,23 +211,30 @@ $(document).keyup(function(e) {
     }
 });
 function motion(event){
-	alert(event.beta);
 
-  	if(event.beta > 240){
+  	if(event.beta <-10){
   		input.up = true;
   		input.back = false;
   	}
-  	 if(event.beta < 170){
+  	else if(event.beta > 10){
   		input.up = false
   		input.back = true;
   	}
+  	else{
+  		input.up = false
+  		input.back = false;
+  	}
   	if(event.gamma > 10){
-  		input.left = true;
+  		input.left = false;
+  		input.right = true;
+  	}
+  	else if(event.gamma < -10){
+  		input.left = true
   		input.right = false;
   	}
-  	 if(event.gamma < -10){
+  	else{
   		input.left = false
-  		input.right = true;
+  		input.right = false;
   	}
 
   
