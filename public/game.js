@@ -212,20 +212,18 @@ $(document).keyup(function(e) {
 });
 function motion(event){
 
-  	if(event.accelerationIncludingGravity.x){
+  	if(event.alpha > 190){
   		input.up = true;
+  		input.back = false;
   	}
-  	if(event.accelerationIncludingGravity.z){
-  		input.left = true;
+  	else if(event.alpha < 170){
+  		input.up = false
+  		input.back = true;
   	}
 
   
 }
 
 
-if(window.DeviceMotionEvent){
-  window.addEventListener("devicemotion", motion, false);
-}else{
-  console.log("DeviceMotionEvent is not supported");
-}
+window.addEventListener('deviceorientation',motion);
 
