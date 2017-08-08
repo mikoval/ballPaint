@@ -211,12 +211,13 @@ $(document).keyup(function(e) {
     }
 });
 function motion(event){
+	alert(event.alpha);
 
   	if(event.alpha > 190){
   		input.up = true;
   		input.back = false;
   	}
-  	else if(event.alpha < 170){
+  	 if(event.alpha < 170){
   		input.up = false
   		input.back = true;
   	}
@@ -224,7 +225,7 @@ function motion(event){
   		input.left = true;
   		input.right = false;
   	}
-  	else if(beta < -10){
+  	 if(event.beta < -10){
   		input.left = false
   		input.right = true;
   	}
