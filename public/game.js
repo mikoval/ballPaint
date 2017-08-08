@@ -220,10 +220,21 @@ function motion(event){
   		input.up = false
   		input.back = true;
   	}
+  	if(event.beta > 10){
+  		input.left = true;
+  		input.right = false;
+  	}
+  	else if(beta < -10){
+  		input.left = false
+  		input.right = true;
+  	}
 
   
 }
 
 
 window.addEventListener('deviceorientation',motion);
+window.addEventListener("devicemotion", function(){
+	$(window).trigger("deviceorientation");
+}, true);
 
