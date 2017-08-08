@@ -210,13 +210,19 @@ $(document).keyup(function(e) {
     	input.jump = false;
     }
 });
+var sBeta = undefined;
+var sGamma = undefined;
 function motion(event){
+	if(sBeta == undefined )
+		sBeta = event.beta;
+	if(sGamma == undefined )
+		sGamma = event.beta;
 
-  	if(event.beta <-10){
+  	if(event.beta - sBeta <-10){
   		input.up = true;
   		input.down = false;
   	}
-  	else if(event.beta > 10){
+  	else if(event.beta -sBeta > 10){
   		input.up = false
   		input.down = true;
   	}
@@ -224,11 +230,11 @@ function motion(event){
   		input.up = false
   		input.down = false;
   	}
-  	if(event.gamma > 10){
+  	if(event.gamma - sGamma > 10){
   		input.left = false;
   		input.right = true;
   	}
-  	else if(event.gamma < -10){
+  	else if(event.gamma -sGamma< -10){
   		input.left = true
   		input.right = false;
   	}
