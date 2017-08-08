@@ -5,6 +5,7 @@ function Ball(x, z, color){
 	this.rotation = 0;
 	this.orientation =  new THREE.Quaternion();
 	this.radius = 3;
+	this.time = Date.now();
 	if(color == 0xFF0000){
 		this.pathColor = 1;
 	}
@@ -40,7 +41,8 @@ function Ball(x, z, color){
 	scene.add( this.obj );
 
 	this.update= function(){
-		
+		var dt = (Date.now() - this.time) / 200;
+		this.time = Date.now();
 		this.velocity.y -= 0.3;
 		this.velocity.multiplyScalar(0.99)
 		if(this.velocity.length() >15.0)
@@ -91,7 +93,7 @@ function Ball(x, z, color){
 		//console.log(rot);
 		//if(rot > 0.5)rot = 0.1;
 		//if(rot < 0.0012) rot = 0;
-		quaternion.setFromAxisAngle(axis,rot);
+		quaternion.setFromAxisAngle(axis,rot * dt );
 
 		this.orientation = quaternion.multiply (this.orientation);
 

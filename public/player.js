@@ -9,6 +9,8 @@ function Player(z, color){
 	this.pathColor = 1;
 	this.radius = 1;
 
+	this.time = Date.now();
+
 	var geometry = new THREE.SphereGeometry(this.radius, 128,128);
 	
 	 
@@ -23,18 +25,21 @@ function Player(z, color){
 	scene.add( this.obj );
 
 	this.update= function(){
+		var dt = (Date.now() - this.time) / 200;
+		this.time = Date.now();
+
 		var x = Math.random();
 		if(x<.03){
 			this.pathColor = Math.floor(Math.random()*3 ) + 1.0;
 		}
-		this.inputs()
+		this.inputs(dt);
 		this.velocity.y -= 0.3;
 		this.velocity.multiplyScalar(0.97)
 		if(this.velocity.length() >8.0)
 			this.velocity.normalize().multiplyScalar(8.0);
 
-
-		this.position = this.position.add(this.velocity.clone().multiplyScalar(0.1));
+		
+		this.position = this.position.add(this.velocity.clone().multiplyScalar( dt ));
 		this.changed = true;
 		var ret = [];
 		if(this.position.y < 1){
@@ -78,7 +83,7 @@ function Player(z, color){
 
 		return ret;
 	}
-	this.inputs= function(){
+	this.inputs= function(dt){
 		if(input.up){
 			this.changed = true;
 			this.velocity = this.velocity.add(this.direction.clone().multiplyScalar ( this.speed ))
@@ -86,7 +91,7 @@ function Player(z, color){
 			var axis = new THREE.Vector3( 0, 1, 0 ).cross(this.direction);
 			
 			var quaternion = new THREE.Quaternion();
-			quaternion.setFromAxisAngle(axis, 0.2);
+			quaternion.setFromAxisAngle(axis, dt*2);
 
 			this.orientation = quaternion.multiply (this.orientation);
 		}
@@ -97,6 +102,7 @@ function Player(z, color){
 			var axis = new THREE.Vector3( 0, 1, 0 ).cross(this.direction);
 			
 			var quaternion = new THREE.Quaternion();
+
 			quaternion.setFromAxisAngle(axis, -0.2);
 
 			this.orientation = quaternion.multiply (this.orientation);

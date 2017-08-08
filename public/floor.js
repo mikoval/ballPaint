@@ -3,6 +3,7 @@ var fluidHeight = 512;
  dt = 1/60;
 dx = 1.0;
 dy = 1.0;
+
 function Floor(res, pathsize, type){
    
     fluidWidth =res
