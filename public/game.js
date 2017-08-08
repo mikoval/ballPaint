@@ -216,7 +216,7 @@ function motion(event){
 	if(sBeta == undefined )
 		sBeta = event.beta;
 	if(sGamma == undefined )
-		sGamma = event.beta;
+		sGamma = event.gamma;
 
   	if(event.beta - sBeta <-10){
   		input.up = true;
