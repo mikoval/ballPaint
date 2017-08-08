@@ -214,15 +214,15 @@ function motion(event){
 
   	if(event.beta <-10){
   		input.up = true;
-  		input.back = false;
+  		input.down = false;
   	}
   	else if(event.beta > 10){
   		input.up = false
-  		input.back = true;
+  		input.down = true;
   	}
   	else{
   		input.up = false
-  		input.back = false;
+  		input.down = false;
   	}
   	if(event.gamma > 10){
   		input.left = false;
