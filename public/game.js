@@ -32,7 +32,7 @@ function Game(scene, camera, res, pathsize){
 			
 			for(var j = 0; j < val.length; j++){
 				this[val[j].side].addColor(val[j].x, val[j].y, this.objs[i].pathColor)
-				this[val[j].side].addVelocity(val[j].x, val[j].y, this.objs[i].velocity);
+				//this[val[j].side].addVelocity(val[j].x, val[j].y, this.objs[i].velocity);
 				this[val[j].side].update();
 			}
 
