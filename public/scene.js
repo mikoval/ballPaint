@@ -98,24 +98,29 @@ var loader = new THREE.TextureLoader();
   loader.load('green/green_displacement.jpg', function ( texture){
       greenTextureDisplacement= texture;
   })
+
 function load(res, size){
+
   
   if(!greenTextureColor || !greenTextureNormal  || !greenTextureSpecular  || !greenTextureDisplacement 
     ||!redTextureColor  || !redTextureNormal  || !redTextureSpecular  || !redTextureDisplacement 
-    ||!blueTextureColor  || !blueTextureNormal  || !blueTextureSpecular  || !blueTextureDisplacement ){
+    ||!blueTextureColor  || !blueTextureNormal  || !blueTextureSpecular  || !blueTextureDisplacement){
     setTimeout(function(){ load(res, size)}, 300);
    
   }
   else{
-
-    game  = new Game(scene, camera,res, size);
+    console.log("starting");
+    if(game == undefined)
+      game  = new Game(scene, camera,res, size);
+    var starting = true;
   }
 
 }
 function callLoad(res, size){
   setTimeout(function(){ load(res, size)}, 300);
 }
-var game;
+var game = undefined;
+
   
 
 
