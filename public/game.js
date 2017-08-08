@@ -230,11 +230,11 @@ function motion(event){
   		input.up = false
   		input.down = false;
   	}
-  	if(event.gamma - sGamma > 10){
+  	if(event.gamma - sGamma > 20){
   		input.left = false;
   		input.right = true;
   	}
-  	else if(event.gamma -sGamma< -10){
+  	else if(event.gamma -sGamma< -20){
   		input.left = true
   		input.right = false;
   	}
