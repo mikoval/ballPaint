@@ -23,14 +23,13 @@ function Game(scene, camera, res, pathsize){
 		var val = this.player.update();
 		for(var j = 0; j < val.length; j++){
 				//this[val[j].side].addColor(val[j].x, val[j].y, this.player.pathColor)
-				console.log(val.x)
+				
 				//this[val[j].side].addVelocity(val.x, val.y, this.player.velocity);
 		}
 		
 		for(var i= 0 ; i < this.objs.length; i++){
 			var val = this.objs[i].update();
-			if(val.length > 0)
-				console.log(val);
+			
 			for(var j = 0; j < val.length; j++){
 				this[val[j].side].addColor(val[j].x, val[j].y, this.objs[i].pathColor)
 				this[val[j].side].addVelocity(val[j].x, val[j].y, this.objs[i].velocity);
@@ -118,10 +117,10 @@ function Game(scene, camera, res, pathsize){
 					
 					var v =  v4.sub(v3);
 					var d = p4.sub(p3);
-			
-					if(v.dot(d) >0)
+					
+					if(v.dot(d) >=0)
 						continue;
-
+					
 					
 
 					var a1 = v1.dot(n);
@@ -211,3 +210,22 @@ $(document).keyup(function(e) {
     	input.jump = false;
     }
 });
+function motion(event){
+
+  	if(event.accelerationIncludingGravity.x){
+  		input.up = true;
+  	}
+  	if(event.accelerationIncludingGravity.z){
+  		input.left = true;
+  	}
+
+  
+}
+
+
+if(window.DeviceMotionEvent){
+  window.addEventListener("devicemotion", motion, false);
+}else{
+  console.log("DeviceMotionEvent is not supported");
+}
+
