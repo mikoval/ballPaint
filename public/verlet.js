@@ -141,6 +141,8 @@ function verletPoint3D(x, y,z, maxX=25, maxZ=25, bounce = 0.9, friction = 1.0, g
 	this.update = function(){
 		var dt = (Date.now() - this.time) / 20;
 		this.time = Date.now();
+		if(dt > 2)
+			dt = 2;
 		var vx = (this.x - this.xOld) * this.friction;
 		var vy = (this.y - this.yOld) * this.friction;
 		var vz = (this.z - this.zOld) * this.friction;

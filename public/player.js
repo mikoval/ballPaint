@@ -27,6 +27,8 @@ function Player(z, color){
 	this.update= function(){
 		var dt = (Date.now() - this.time) / 200;
 		this.time = Date.now();
+		if(dt > 2.0)
+			dt = 2.0;
 
 		var x = Math.random();
 		if(x<.03){
