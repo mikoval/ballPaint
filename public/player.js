@@ -50,24 +50,24 @@ function Player(z, color){
 			ret.push({hit:true,side: "floor",  x:this.position.x, y:this.position.y})
 
 		}
-		if(this.position.x > 24.25){
-			this.position.x = 24.25;
+		if(this.position.x+this.radius > 25){
+			this.position.x = 25-this.radius;
 			this.velocity.x *= -0.6;
 			ret.push({hit:true,side: "left",  x:25-this.position.y, y:-this.position.z})
 			
 		}
-		if(this.position.x < -24.25){
-			this.position.x = -24.25;
+		if(this.position.x-this.radius < -25){
+			this.position.x = -25+this.radius;
 			this.velocity.x *= -0.6;
 			ret.push({hit:true,side: "right",  x:-25 + this.position.y, y:-this.position.z})
 		}
-		if(this.position.z < -24.25){
-			this.position.z = -24.25;
+		if(this.position.z - this.radius < -25){
+			this.position.z = -25+this.radius;
 			this.velocity.z *= -0.6;
 			ret.push({hit:true,side: "back" , x:-this.position.x, y:-25  + this.position.y })
 		}
-		if(this.position.z > 24.25){
-			this.position.z = 24.25;
+		if(this.position.z+this.radius> 25){
+			this.position.z = 25-this.radius;
 			this.velocity.z *= -0.6;
 			ret.push({hit:true,side: "front" , x:-this.position.x, y:25 -this.position.y})
 		}
