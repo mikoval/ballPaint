@@ -1,5 +1,5 @@
 var damping = 1.0;
-var accuracy = 2;
+var accuracy = 3;
 
 function verletObj(points, springs){
 	this.type = "obj";

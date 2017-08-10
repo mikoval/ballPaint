@@ -113,10 +113,10 @@ html, body {
             float dist = distance(densitySource.zw,gl_FragCoord.xy);
             if(dist < densitySize){
                 if(densitySource.y == 1.0){
-                    if(gl_FragColor.r <=   1.0 - 0.5 * dist/densitySize){
-                        gl_FragColor.r = 1.0 - 0.5 * dist/densitySize;
-                        gl_FragColor.g =  0.1 *  dist/densitySize;
-                        gl_FragColor.b = 0.1 *  dist/densitySize;
+                    if(gl_FragColor.r <=   1.0 - 0.5 * dist/densitySize/5.0){
+                        gl_FragColor.r = 1.0 - 0.5 * dist/densitySize/5.0;
+                        gl_FragColor.g =  0.2 *  dist/densitySize;
+                        gl_FragColor.b = 0.2 *  dist/densitySize;
 
                         
                     }
@@ -127,10 +127,10 @@ html, body {
                     
                 }
                 else if(densitySource.y == 2.0){
-                    if(gl_FragColor.g <=   1.0 - 0.5 * dist/densitySize){
-                        gl_FragColor.g = 1.0 - 0.5 * dist/densitySize;
-                        gl_FragColor.r =  0.1 *  dist/densitySize;
-                        gl_FragColor.b = 0.1 *  dist/densitySize;
+                    if(gl_FragColor.g <=   1.0 - 0.5 * dist/densitySize/5.0){
+                        gl_FragColor.g = 1.0 - 0.5 * dist/densitySize/5.0;
+                        gl_FragColor.r =  0.2 *  dist/densitySize;
+                        gl_FragColor.b = 0.2 *  dist/densitySize;
 
                         
                     }
@@ -139,10 +139,10 @@ html, body {
                     
                 }
                 else if(densitySource.y == 3.0){
-                    if(gl_FragColor.b <=   1.0 - 0.5 * dist/densitySize){
-                        gl_FragColor.b = 1.0 - 0.5 * dist/densitySize;
-                        gl_FragColor.g =  0.1 *  dist/densitySize;
-                        gl_FragColor.r = 0.1 *  dist/densitySize;
+                    if(gl_FragColor.b <=   1.0 - 0.5 * dist/densitySize/5.0){
+                        gl_FragColor.b = 1.0 - 0.5 * dist/densitySize/5.0;
+                        gl_FragColor.g =  0.2 *  dist/densitySize;
+                        gl_FragColor.r = 0.2 *  dist/densitySize;
 
                         
                     }                 
