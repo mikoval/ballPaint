@@ -3,7 +3,7 @@ const HEIGHT = document.body.clientHeight;
 
 const VIEW_ANGLE = 45;
 const ASPECT = WIDTH / HEIGHT;
-const NEAR = 0.1;
+const NEAR = 0.001;
 const FAR = 10000;
 
 const div = document.querySelector('#container');
@@ -26,7 +26,7 @@ DirectionalLight.position.y = 20;
 DirectionalLight.position.x = 3;
 DirectionalLight.position.z = 7;
 
-var AmbientLight  = new THREE.AmbientLight( 0x808080 );
+var AmbientLight  = new THREE.AmbientLight( 0x505050 );
 
 
 scene.add(camera);
@@ -99,7 +99,7 @@ var loader = new THREE.TextureLoader();
       greenTextureDisplacement= texture;
   })
 
-function load(res, size){
+function load(res, size, type){
 
   
   if(!greenTextureColor || !greenTextureNormal  || !greenTextureSpecular  || !greenTextureDisplacement 
@@ -111,13 +111,13 @@ function load(res, size){
   else{
     console.log("starting");
     if(game == undefined)
-      game  = new Game(scene, camera,res, size);
+      game  = new Game(scene, camera,res, size, type);
     var starting = true;
   }
 
 }
-function callLoad(res, size){
-  setTimeout(function(){ load(res, size)}, 300);
+function callLoad(res, size, type){
+  setTimeout(function(){ load(res, size, type)}, 300);
 }
 var game = undefined;
 

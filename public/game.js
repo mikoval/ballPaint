@@ -1,4 +1,4 @@
-function Game(scene, camera, res, pathsize){
+function Game(scene, camera, res, pathsize, type){
 	$(".choose-resolution").hide();
 	this.scene = scene;
 	this.camera = camera;
@@ -15,6 +15,8 @@ function Game(scene, camera, res, pathsize){
 	this.camera.position.z = this.player.position.z;
 	this.camera.position.y += 10;
 	this.camera.position.z += 20;
+	this.type = type,
+
 
 	this.update = function(){
 
@@ -28,7 +30,16 @@ function Game(scene, camera, res, pathsize){
 		}
 		
 		for(var i= 0 ; i < this.objs.length; i++){
-			var val = this.objs[i].update();
+			var centers = []
+			for(var j= 0 ; j < this.objs.length; j++){
+				if(i !=j){
+					var obj = this.objs[j];
+					if(obj.verlet)
+						centers.push({x:obj.verlet.cx, y:obj.verlet.cy, z:obj.verlet.cz});
+				} 
+				
+			}
+			var val = this.objs[i].update(this.player.position, centers);
 			
 			for(var j = 0; j < val.length; j++){
 				this[val[j].side].addColor(val[j].x, val[j].y, this.objs[i].pathColor)
@@ -62,6 +73,8 @@ function Game(scene, camera, res, pathsize){
 		this.camera.lookAt(this.player.position); 
 	}
 	this.collisions = function(){
+		if(this.type!="rigid")
+			return;
 		var obj = this.player;
 		for(var j = 0; j < this.objs.length; j++){
 			var obj2 = this.objs[j];
@@ -171,14 +184,29 @@ function Game(scene, camera, res, pathsize){
 
 		// add the object to the scene
 		
-		var ball1 = new Ball(2,-5,0xFF0000);
-		var ball2 = new Ball(15,2,0x00FF00);
-		var ball3 = new Ball(-9,-8,0x0000FF);
+		//var ball1 = new BallSoft(2,-5,0xFF0000);
+
+		if(this.type=="rigid"){
+			var ball1 = new Ball(15,2,0xFF0000);
+			var ball2 = new Ball(8,-1,0x00FF00);
+			var ball3 = new Ball(-9,-8,0x0000FF);
+			
 		
-	
-		this.objs.push(ball1);
-		this.objs.push(ball2);
-		this.objs.push(ball3);
+			this.objs.push(ball1);
+			this.objs.push(ball2);
+			this.objs.push(ball3);
+		}
+		else if(this.type=="soft"){
+			var ball1 = new BallSoft(15,2,0xFF0000);
+			var ball2 = new BallSoft(8,-1,0x00FF00);
+			var ball3 = new BallSoft(-9,-8,0x0000FF);
+			
+		
+			this.objs.push(ball1);
+			this.objs.push(ball2);
+			this.objs.push(ball3);
+		}
+		
 
 
 

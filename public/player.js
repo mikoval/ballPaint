@@ -1,13 +1,13 @@
 function Player(z, color){
 	this.direction = new THREE.Vector3( 0, 0, -1 );
-	this.position = new THREE.Vector3(0, 1, 5);
+	this.position = new THREE.Vector3(0, -5, 5);
 	this.velocity = new THREE.Vector3(0, 0, 0);
 	this.rotation = 0;
 	this.speed = .4;
 	this.changed = true;
 	this.orientation =  new THREE.Quaternion();
 	this.pathColor = 1;
-	this.radius = 1;
+	this.radius = 2.5;
 
 	this.time = Date.now();
 
@@ -33,7 +33,7 @@ function Player(z, color){
 			this.pathColor = Math.floor(Math.random()*3 ) + 1.0;
 		}
 		this.inputs(dt);
-		this.velocity.y -= 0.3;
+		this.velocity.y -= 3 * dt;
 		this.velocity.multiplyScalar(0.95)
 		if(this.velocity.length() >8.0)
 			this.velocity.normalize().multiplyScalar(8.0);
@@ -42,8 +42,8 @@ function Player(z, color){
 		this.position = this.position.add(this.velocity.clone().multiplyScalar( dt ));
 		this.changed = true;
 		var ret = [];
-		if(this.position.y < 1){
-			this.position.y = 1;
+		if(this.position.y < this.radius){
+			this.position.y = this.radius;
 			this.velocity.y *= -0.6;
 			ret.push({hit:true,side: "floor",  x:this.position.x, y:this.position.y})
 
@@ -125,7 +125,7 @@ function Player(z, color){
 			this.direction.applyAxisAngle( axis, angle );
 		}
 		if(input.jump){
-			if(this.position.y < 1.1 && this.velocity.y < 1.0) {
+			if(this.position.y < 3.1 && this.velocity.y < 1.0) {
 				console.log('jumping')
 				this.velocity.y = 8;
 			}

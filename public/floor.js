@@ -14,7 +14,7 @@ function Floor(res, pathsize, type){
 	var geometry = new THREE.PlaneGeometry( 50, 50 );
 	var material = new THREE.MeshPhongMaterial({map: this.densityA});
 	var mesh = new THREE.Mesh( geometry, material );
-	
+	mesh.frustumCulled = false;
 	if(type == "bottom"){
 		mesh.rotateX(-3.14/2);
 		mesh.position.z = 0
@@ -66,7 +66,6 @@ function Floor(res, pathsize, type){
 
 	}
 	this.addColor = function(x, y, color){
-        console.log('addingcolor');
 
 		this.addDensityMaterial.uniforms.densitySource.value.x = 5.0;
         if(color == 1.0)
