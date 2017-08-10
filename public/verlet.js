@@ -293,7 +293,7 @@ function verletFromMesh(x, y , z, vertices, faces, maxX, maxY){
 		var p2 = points[ind];
 		var dist = distance3D(p1,p2);
 	
-		springs.push(new verletStick3D( p1,p2, dist, 0.35) )
+		springs.push(new verletStick3D( p1,p2, dist, 0.1) )
 
 	}
 	for(var i = 0; i < points.length; i++){
@@ -306,7 +306,7 @@ function verletFromMesh(x, y , z, vertices, faces, maxX, maxY){
 			
 			var dist = distance3D(p1, p2);
 			if(dist < 4)
-				springs.push(new verletStick3D( p1,p2, dist, 0.9) )
+				springs.push(new verletStick3D( p1,p2, dist, 0.2) )
 			
 			
 			
