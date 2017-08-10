@@ -117,7 +117,7 @@ function load(res, size, type){
 
 }
 function callLoad(res, size, type){
-  setTimeout(function(){ load(res, size, type)}, 300);
+  setTimeout(function(){ load(res, size, type)}, 1000);
 }
 var game = undefined;
 
