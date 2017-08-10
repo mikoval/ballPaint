@@ -60,9 +60,9 @@ function verletObj(points, springs){
 			var dy  = position.y - obj.y;
 			var dz  = position.z - obj.z;
 			for(var i = 0; i < this.points.length; i++){
-				this.points[i].x -= dx * 0.3;
-				this.points[i].y -= dy * 0.3 ;
-				this.points[i].z -= dz * 0.3
+				this.points[i].x -= dx * 0.1;
+				this.points[i].y -= dy * 0.1 ;
+				this.points[i].z -= dz * 0.1
 			}
 		}
 		for(var i = 0; i < objs.length; i++){
