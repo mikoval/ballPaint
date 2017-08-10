@@ -18,7 +18,7 @@ function CubeSoft(x, z, color){
 	}
 	
 
-	var geometry = new THREE.BoxGeometry(this.radius*1.5, this.radius*1.5, this.radius*1.5,3, 3,3);
+	var geometry = new THREE.BoxGeometry(this.radius*1.5, this.radius*1.5, this.radius*1.5,4, 4,4);
 
 	geometry.dynamic = true;
 
@@ -56,8 +56,10 @@ function CubeSoft(x, z, color){
 			this.obj.geometry.vertices[i].x = this.verlet.points[i].x;
 			this.obj.geometry.vertices[i].y = this.verlet.points[i].y;
 			this.obj.geometry.vertices[i].z = this.verlet.points[i].z;
+			//this.obj.geometry.computeFlatVertexNormals ()
 			this.obj.geometry.computeVertexNormals();
 			this.obj.geometry.verticesNeedUpdate = true;
+			this.obj.geometry.normalsNeedUpdate = true;
 
 
 

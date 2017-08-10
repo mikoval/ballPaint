@@ -26,7 +26,7 @@ DirectionalLight.position.y = 20;
 DirectionalLight.position.x = 3;
 DirectionalLight.position.z = 7;
 
-var AmbientLight  = new THREE.AmbientLight( 0x505050 );
+var AmbientLight  = new THREE.AmbientLight( 0x808080 );
 
 
 scene.add(camera);
