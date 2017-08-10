@@ -196,10 +196,20 @@ function Game(scene, camera, res, pathsize, type){
 			this.objs.push(ball2);
 			this.objs.push(ball3);
 		}
-		else if(this.type=="soft"){
+		else if(this.type=="soft-ball"){
 			var ball1 = new BallSoft(15,2,0xFF0000);
 			var ball2 = new BallSoft(8,-1,0x00FF00);
 			var ball3 = new BallSoft(-9,-8,0x0000FF);
+			
+		
+			this.objs.push(ball1);
+			this.objs.push(ball2);
+			this.objs.push(ball3);
+		}
+		else if(this.type=="soft-cube"){
+			var ball1 = new CubeSoft(15,2,0xFF0000);
+			var ball2 = new CubeSoft(8,-1,0x00FF00);
+			var ball3 = new CubeSoft(-9,-8,0x0000FF);
 			
 		
 			this.objs.push(ball1);

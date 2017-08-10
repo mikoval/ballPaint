@@ -1,4 +1,4 @@
-function BallSoft(x, z, color){
+function CubeSoft(x, z, color){
 
 	this.direction = new THREE.Vector3( 0, 0, -1 );
 	this.position = new THREE.Vector3(x, 3.0, z);
@@ -18,23 +18,25 @@ function BallSoft(x, z, color){
 	}
 	
 
-	var geometry = new THREE.SphereGeometry(this.radius, 12,12);
+	var geometry = new THREE.BoxGeometry(this.radius*1.5, this.radius*1.5, this.radius*1.5,3, 3,3);
 
 	geometry.dynamic = true;
 
 	var vertices = geometry.vertices;
 	var faces = geometry.faces;
-	this.verlet = new verletBallFromMesh(x, 10, z, vertices, faces, 32,32);
+	this.verlet = new verletCubeFromMesh(x, 10, z, vertices, faces, 32,32);
 
 	var material;
 	if(color == 0xFF0000) {
 		console.log("red");
-		material = new THREE.MeshPhongMaterial({color:0xFF0000});
+		material = new THREE.MeshPhongMaterial({map:redTextureColor, normalMap: redTextureNormal, specularMap: redTextureSpecular, overdraw: 0.5});
 	}
 	if(color == 0x00FF00) {
-		material = new THREE.MeshPhongMaterial({color:0x00FF00});	}
+		material = new THREE.MeshPhongMaterial({map:greenTextureColor, normalMap: greenTextureNormal,specularMap: greenTextureSpecular, overdraw: 0.5});
+	}
 	if(color == 0x0000FF) {
-		material = new THREE.MeshPhongMaterial({color:0x0000FF});	}
+		material = new THREE.MeshPhongMaterial({map:blueTextureColor, normalMap: blueTextureNormal,specularMap: blueTextureSpecular, overdraw: 0.5});
+	}
 	material.side = THREE.DoubleSide;
 	var mesh = new THREE.Mesh(geometry, material);
 	mesh.frustumCulled = false;

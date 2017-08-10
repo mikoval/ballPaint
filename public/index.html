@@ -84,7 +84,8 @@ html, body {
 <div class ="choose-resolution">
     <h2 class = "choose-button"> Pick simulation quality </h2>
     <button class="btn" type = "button" id = "low" onclick="callLoad(1024, 32, 'rigid')">Rigid</button>
-    <button class="btn"type = "button"  id = "medium" onclick="callLoad(512, 16, 'soft')">Soft</button>
+    <button class="btn"type = "button"  id = "medium" onclick="callLoad(512, 16, 'soft-ball')">Soft Sphere</button>
+    <button class="btn"type = "button"  id = "medium" onclick="callLoad(512, 16, 'soft-cube')">Soft Cube</button>
    
    <!-- <button class="btn"type = "button"  id = "high" onclick="callLoad(2048, 64)">Ultra</button>-->
 </div>
@@ -167,6 +168,7 @@ html, body {
 <script src="floor.js"></script>
 <script src="ball.js"></script>
 <script src="ballVerlet.js"></script>
+<script src="cubeVerlet.js"></script>
 <script src="verlet.js"></script>
 <script src="scene.js"></script>
 </body> 

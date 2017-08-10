@@ -251,7 +251,7 @@ function verletStick3D(p1, p2, distance, rigid){
 	
 }
 
-function verletFromMesh(x, y , z, vertices, faces, maxX, maxY){
+function verletBallFromMesh(x, y , z, vertices, faces, maxX, maxY){
 	var points  = [];
 	for(var i = 0; i < vertices.length; i++){
 		
@@ -321,7 +321,146 @@ function verletFromMesh(x, y , z, vertices, faces, maxX, maxY){
 
 	return new verletObj(points, springs);
 }
+function verletCubeFromMesh(x, y , z, vertices, faces, maxX, maxY){
+	var points  = [];
+	for(var i = 0; i < vertices.length; i++){
+		
+		var p = new verletPoint3D(vertices[i].x + x, vertices[i].y + y, vertices[i].z + z, maxX, maxY, 1, 0.95);
+		points.push(p);
 
+	}
+	
+	var springs = []
+	
+	for(var i = 0; i < faces.length; i++){
+		var face = faces[i];
+		var p1 = face.a;
+		var p2 = face.b;
+		var p3 = face.c;
+		springs.push(new verletStick3D( p1,p2, distance3D(p1, p2), 1) )
+		springs.push(new verletStick3D( p2,p3, distance3D(p2, p3), 1) )
+		springs.push(new verletStick3D( p3,p1, distance3D(p3, p1), 1) )
+	}
+	for(var i = 0; i < points.length; i++){
+		var p1 = points[i];
+		var max = 0;
+		var ind = 0;
+
+		
+		for(var j= 0; j < points.length; j++){
+			var p2 = points[j];
+			
+			var dist = distance3D(p1, p2);
+			if(dist > max){
+				max = dist;
+				ind = j
+			}
+			
+			
+			
+
+		}
+		var p2 = points[ind];
+		var dist = distance3D(p1,p2);
+	
+		springs.push(new verletStick3D( p1,p2, dist, 0.1) )
+
+	}
+	for(var i = 0; i < points.length; i++){
+		var p1 = points[i];
+
+
+		
+		for(var j= i + 1; j < points.length; j++){
+			var p2 = points[j];
+			
+			var dist = distance3D(p1, p2);
+			if(dist < 5)
+				springs.push(new verletStick3D( p1,p2, dist, 0.2) )
+			
+			
+			
+			
+
+		}
+		
+
+	}
+
+
+
+	return new verletObj(points, springs);
+}
+function verletOctahedronFromMesh(x, y , z, vertices, faces, maxX, maxY){
+	var points  = [];
+	for(var i = 0; i < vertices.length; i++){
+		
+		var p = new verletPoint3D(vertices[i].x + x, vertices[i].y + y, vertices[i].z + z, maxX, maxY, 1, 0.95);
+		points.push(p);
+
+	}
+	
+	var springs = []
+	
+	for(var i = 0; i < faces.length; i++){
+		var face = faces[i];
+		var p1 = face.a;
+		var p2 = face.b;
+		var p3 = face.c;
+		springs.push(new verletStick3D( p1,p2, distance3D(p1, p2), 1) )
+		springs.push(new verletStick3D( p2,p3, distance3D(p2, p3), 1) )
+		springs.push(new verletStick3D( p3,p1, distance3D(p3, p1), 1) )
+	}
+	for(var i = 0; i < points.length; i++){
+		var p1 = points[i];
+		var max = 0;
+		var ind = 0;
+
+		
+		for(var j= 0; j < points.length; j++){
+			var p2 = points[j];
+			
+			var dist = distance3D(p1, p2);
+			if(dist > max){
+				max = dist;
+				ind = j
+			}
+			
+			
+			
+
+		}
+		var p2 = points[ind];
+		var dist = distance3D(p1,p2);
+	
+		springs.push(new verletStick3D( p1,p2, dist, 0.1) )
+
+	}
+	for(var i = 0; i < points.length; i++){
+		var p1 = points[i];
+
+
+		
+		for(var j= i + 1; j < points.length; j++){
+			var p2 = points[j];
+			
+			var dist = distance3D(p1, p2);
+			if(dist < 5)
+				springs.push(new verletStick3D( p1,p2, dist, 0.2) )
+			
+			
+			
+			
+
+		}
+		
+
+	}
+
+
+
+	return new verletObj(points, springs);
+}
 function distance3D(p1, p2){
 	var x = (p2.x - p1.x );
 	var y = (p2.y - p1.y );
