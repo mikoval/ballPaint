@@ -9,8 +9,8 @@ function Floor(res, pathsize, type){
     fluidWidth =res
     fluidHeight = res
 	
-	this.densityA = new THREE.WebGLRenderTarget( fluidWidth , fluidHeight, {depthBuffer: false, stencilBuffer:false, minFilter: THREE.LinearFilter, magFilter: THREE.NearestFilter,type: THREE.UnsignedByte,});
-	this.densityB = new THREE.WebGLRenderTarget( fluidWidth , fluidHeight, {depthBuffer: false, stencilBuffer:false, minFilter: THREE.LinearFilter, magFilter: THREE.NearestFilter, type: THREE.UnsignedByte} );
+	this.densityA = new THREE.WebGLRenderTarget( fluidWidth , fluidHeight, {depthBuffer: false, stencilBuffer:false, minFilter: THREE.LinearFilter, magFilter: THREE.NearestFilter,type: THREE.FloatType,});
+	this.densityB = new THREE.WebGLRenderTarget( fluidWidth , fluidHeight, {depthBuffer: false, stencilBuffer:false, minFilter: THREE.LinearFilter, magFilter: THREE.NearestFilter, type: THREE.FloatType} );
 	var geometry = new THREE.PlaneGeometry( 50, 50 );
 	var material = new THREE.MeshPhongMaterial({map: this.densityA});
 	var mesh = new THREE.Mesh( geometry, material );
