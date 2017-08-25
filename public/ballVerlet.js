@@ -54,14 +54,14 @@ function BallSoft(x, z, color){
 			this.obj.geometry.vertices[i].x = this.verlet.points[i].x;
 			this.obj.geometry.vertices[i].y = this.verlet.points[i].y;
 			this.obj.geometry.vertices[i].z = this.verlet.points[i].z;
-			this.obj.geometry.computeVertexNormals();
-			this.obj.geometry.verticesNeedUpdate = true;
 			
 
-			this.obj.geometry.normalsNeedUpdate = true;
-
 		}
+		this.obj.geometry.computeVertexNormals();
+		this.obj.geometry.verticesNeedUpdate = true;
 
+		this.obj.geometry.normalsNeedUpdate = true;
+		
 
 		return hits;
 
